@@ -14,7 +14,7 @@ export default function loadBeautifier(cb) {
   const loading = ELEMENT.Loading.service({
     fullscreen: true,
     lock: true,
-    text: '格式化资源加载中...',
+    text: 'Tải tài nguyên được định dạng...',
     spinner: 'el-icon-loading',
     background: 'rgba(255, 255, 255, 0.5)'
   })

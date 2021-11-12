@@ -7,11 +7,11 @@
 <script>
 export default {
   mounted() {
-    // 取消开始的loading动画
+    // Hủy Bắt đầu Đang tải hình ảnh động
     const preLoader = document.querySelector('#pre-loader')
     preLoader.style.display = 'none'
 
-    // fix: firefox 下 拖拽 会新打卡一个选项卡
+    // fix: Firefox kéo và thả thẻ mới một tab
     // https://github.com/JakHuang/form-generator/issues/15
     document.body.ondrop = event => {
       event.preventDefault()

@@ -6,8 +6,8 @@ import pluginsConfig from './pluginsConfig'
 let monacoEidtor
 
 /**
- * 动态加载monaco-editor cdn资源
- * @param {Function} cb 回调，必填
+ * Tải tài nguyên Dynamic Monaco-Editor CDN
+ * @param {Function} cb Đón, bắt buộc
  */
 export default function loadMonaco(cb) {
   if (monacoEidtor) {

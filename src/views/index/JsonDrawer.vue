@@ -4,19 +4,19 @@
       <div class="action-bar" :style="{'text-align': 'left'}">
         <span class="bar-btn" @click="refresh">
           <i class="el-icon-refresh" />
-          刷新
+          Làm mới
         </span>
         <span ref="copyBtn" class="bar-btn copy-json-btn">
           <i class="el-icon-document-copy" />
-          复制JSON
+          Sao chép JSON.
         </span>
         <span class="bar-btn" @click="exportJsonFile">
           <i class="el-icon-download" />
-          导出JSON文件
+          Xuất tệp JSON
         </span>
         <span class="bar-btn delete-btn" @click="$emit('update:visible', false)">
           <i class="el-icon-circle-close" />
-          关闭
+          Khép kín
         </span>
       </div>
       <div id="editorJson" class="json-editor" />
@@ -120,8 +120,8 @@ export default {
         this.$emit('refresh', JSON.parse(this.jsonEditor.getValue()))
       } catch (error) {
         this.$notify({
-          title: '错误',
-          message: 'JSON格式错误，请检查',
+          title: 'sai lầm, điều sai, ngộ nhận',
+          message: 'Lỗi định dạng JSON, vui lòng kiểm tra',
           type: 'error'
         })
       }

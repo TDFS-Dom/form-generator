@@ -2,9 +2,9 @@ import { deepClone } from '@/utils/index'
 
 const componentChild = {}
 /**
- * 将./slots中的文件挂载到对象componentChild上
- * 文件名为key，对应JSON配置中的__config__.tag
- * 文件内容为value，解析JSON配置中的__slot__
+ * Gắn tệp vào ./slots trên thành phần đối tượng
+ * Tên tệp là phím, tương ứng với __config __. Thẻ trong cấu hình JSON
+ * Nội dung của tệp là giá trị, phân tích cú pháp __slot__ trong cấu hình JSON
  */
 const slotsFiles = require.context('./slots', false, /\.js$/)
 const keys = slotsFiles.keys() || []
@@ -66,7 +66,7 @@ function buildDataObject(confClone, dataObject) {
     }
   })
 
-  // 清理属性
+  // Dọn dẹp thuộc tính
   clearAttrs(dataObject)
 }
 
@@ -77,7 +77,7 @@ function clearAttrs(dataObject) {
 }
 
 function makeDataObject() {
-  // 深入数据对象：
+  // Đối tượng dữ liệu chuyên sâu:
   // https://cn.vuejs.org/v2/guide/render-function.html#%E6%B7%B1%E5%85%A5%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1
   return {
     class: {},
@@ -108,13 +108,13 @@ export default {
     const confClone = deepClone(this.conf)
     const children = this.$slots.default || []
 
-    // 如果slots文件夹存在与当前tag同名的文件，则执行文件中的代码
+    // Nếu thư mục Slots tồn tại với các tệp có thẻ hiện tại, mã trong tệp được thực thi.
     mountSlotFiles.call(this, h, confClone, children)
 
-    // 将字符串类型的事件，发送为消息
+    // Gửi một sự kiện loại chuỗi thành tin nhắn
     emitEvents.call(this, confClone)
 
-    // 将json表单配置转化为vue render可以识别的 “数据对象（dataObject）”
+    // Cấu hình hình thức JSON thành đối tượng dữ liệu dữ liệu (DataObject) nhận dạng của Vue Render.
     buildDataObject.call(this, confClone, dataObject)
 
     return h(this.conf.__config__.tag, dataObject, children)

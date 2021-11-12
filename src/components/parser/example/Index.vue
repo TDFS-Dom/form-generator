@@ -26,7 +26,7 @@ export default {
         fields: [
           {
             __config__: {
-              label: '单行文本',
+              label: 'Một dòng văn bản',
               labelWidth: null,
               showLabel: true,
               changeTag: true,
@@ -193,7 +193,7 @@ export default {
         fields: [
           {
             __config__: {
-              label: '单行文本',
+              label: 'Một dòng văn bản',
               labelWidth: null,
               showLabel: true,
               changeTag: true,

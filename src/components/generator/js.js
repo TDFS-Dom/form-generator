@@ -14,9 +14,9 @@ const inheritAttrs = {
 }
 
 /**
- * 组装js 【入口函数】
- * @param {Object} formConfig 整个表单配置
- * @param {String} type 生成类型，文件或弹窗等
+ * Hội JS [Chức năng lối vào]
+ * @param {Object} formConfig Cấu hình toàn bộ hình thức
+ * @param {String} type Tạo loại, tệp hoặc cửa sổ bật lên, v.v.
  */
 export function makeUpJs(formConfig, type) {
   confGlobal = formConfig = deepClone(formConfig)
@@ -47,14 +47,14 @@ export function makeUpJs(formConfig, type) {
   return script
 }
 
-// 构建组件属性
+// Xây dựng các thuộc tính thành phần.
 function buildAttributes(scheme, dataList, ruleList, optionsList, methodList, propsList, uploadVarList, created) {
   const config = scheme.__config__
   const slot = scheme.__slot__
   buildData(scheme, dataList)
   buildRules(scheme, ruleList)
 
-  // 特殊处理options属性
+  // Thuộc tính tùy chọn điều trị đặc biệt
   if (scheme.options || (slot && slot.options && slot.options.length)) {
     buildOptions(scheme, optionsList)
     if (config.dataType === 'dynamic') {
@@ -66,25 +66,25 @@ function buildAttributes(scheme, dataList, ruleList, optionsList, methodList, pr
     }
   }
 
-  // 处理props
+  // Đạo cụ xử lý
   if (scheme.props && scheme.props.props) {
     buildProps(scheme, propsList)
   }
 
-  // 处理el-upload的action
+  // Xử lý hành động el-upload
   if (scheme.action && config.tag === 'el-upload') {
     uploadVarList.push(
       `${scheme.__vModel__}Action: '${scheme.action}',
       ${scheme.__vModel__}fileList: [],`
     )
     methodList.push(buildBeforeUpload(scheme))
-    // 非自动上传时，生成手动上传的函数
+    // Tạo một chức năng tải lên thủ công khi nó được tự động tải lên
     if (!scheme['auto-upload']) {
       methodList.push(buildSubmitUpload(scheme))
     }
   }
 
-  // 构建子级组件属性
+  // Xây dựng một thuộc tính thành phần phụ
   if (config.children) {
     config.children.forEach(item => {
       buildAttributes(item, dataList, ruleList, optionsList, methodList, propsList, uploadVarList, created)
@@ -92,12 +92,12 @@ function buildAttributes(scheme, dataList, ruleList, optionsList, methodList, pr
   }
 }
 
-// 在Created调用函数
+// Tạo hàm cuộc gọi
 function callInCreated(methodName, created) {
   created.push(`this.${methodName}()`)
 }
 
-// 混入处理函数
+// Chức năng xử lý hỗn hợp
 function mixinMethod(type) {
   const list = []; const
     minxins = {
@@ -105,7 +105,7 @@ function mixinMethod(type) {
         submitForm: `submitForm() {
         this.$refs['${confGlobal.formRef}'].validate(valid => {
           if(!valid) return
-          // TODO 提交表单
+          // TODO Gửi mẫu
         })
       },`,
         resetForm: `resetForm() {
@@ -139,7 +139,7 @@ function mixinMethod(type) {
   return list
 }
 
-// 构建data
+// Xây dựng một dữ liệu
 function buildData(scheme, dataList) {
   const config = scheme.__config__
   if (scheme.__vModel__ === undefined) return
@@ -147,7 +147,7 @@ function buildData(scheme, dataList) {
   dataList.push(`${scheme.__vModel__}: ${defaultValue},`)
 }
 
-// 构建校验规则
+// Xây dựng quy tắc xác nhận
 function buildRules(scheme, ruleList) {
   const config = scheme.__config__
   if (scheme.__vModel__ === undefined) return
@@ -155,8 +155,8 @@ function buildRules(scheme, ruleList) {
   if (ruleTrigger[config.tag]) {
     if (config.required) {
       const type = isArray(config.defaultValue) ? 'type: \'array\',' : ''
-      let message = isArray(config.defaultValue) ? `请至少选择一个${config.label}` : scheme.placeholder
-      if (message === undefined) message = `${config.label}不能为空`
+      let message = isArray(config.defaultValue) ? `Vui lòng chọn ít nhất một${config.label}` : scheme.placeholder
+      if (message === undefined) message = `${config.label}Không thể trống`
       rules.push(`{ required: true, ${type} message: '${message}', trigger: '${ruleTrigger[config.tag]}' }`)
     }
     if (config.regList && isArray(config.regList)) {
@@ -172,10 +172,10 @@ function buildRules(scheme, ruleList) {
   }
 }
 
-// 构建options
+// Tùy chọn xây dựng
 function buildOptions(scheme, optionsList) {
   if (scheme.__vModel__ === undefined) return
-  // el-cascader直接有options属性，其他组件都是定义在slot中，所以有两处判断
+  // El-Cascader có một tài sản tùy chọn trực tiếp và các thành phần khác được xác định trong Slot, do đó, có hai đánh giá.
   let { options } = scheme
   if (!options) options = scheme.__slot__.options
   if (scheme.__config__.dataType === 'dynamic') { options = [] }
@@ -188,7 +188,7 @@ function buildProps(scheme, propsList) {
   propsList.push(str)
 }
 
-// el-upload的BeforeUpload
+// el-Tải lên 的 overUpload.
 function buildBeforeUpload(scheme) {
   const config = scheme.__config__
   const unitNum = units[config.sizeUnit]; let rightSizeCode = ''; let acceptCode = ''; const
@@ -196,14 +196,14 @@ function buildBeforeUpload(scheme) {
   if (config.fileSize) {
     rightSizeCode = `let isRightSize = file.size / ${unitNum} < ${config.fileSize}
     if(!isRightSize){
-      this.$message.error('文件大小超过 ${config.fileSize}${config.sizeUnit}')
+      this.$message.error('Kích thước tập tin vượt quá ${config.fileSize}${config.sizeUnit}')
     }`
     returnList.push('isRightSize')
   }
   if (scheme.accept) {
     acceptCode = `let isAccept = new RegExp('${scheme.accept}').test(file.type)
     if(!isAccept){
-      this.$message.error('应该选择${scheme.accept}类型的文件')
+      this.$message.error('Nên chọn${scheme.accept}Nhập tập tin')
     }`
     returnList.push('isAccept')
   }
@@ -226,7 +226,7 @@ function buildSubmitUpload(scheme) {
 function buildOptionMethod(methodName, model, methodList, scheme) {
   const config = scheme.__config__
   const str = `${methodName}() {
-    // 注意：this.$axios是通过Vue.prototype.$axios = axios挂载产生的
+    // Lưu ý：this.$axios是通过Vue.prototype.$axios = axios挂载产生的
     this.$axios({
       method: '${config.method}',
       url: '${config.url}'

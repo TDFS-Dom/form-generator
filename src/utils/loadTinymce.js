@@ -15,7 +15,7 @@ export default function loadTinymce(cb) {
   const loading = ELEMENT.Loading.service({
     fullscreen: true,
     lock: true,
-    text: '富文本资源加载中...',
+    text: 'Tải tài nguyên văn bản ác...',
     spinner: 'el-icon-loading',
     background: 'rgba(255, 255, 255, 0.5)'
   })

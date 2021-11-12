@@ -58,7 +58,7 @@ function renderFrom(h) {
         disabled={formConfCopy.disabled}
         label-width={`${formConfCopy.labelWidth}px`}
         ref={formConfCopy.formRef}
-        // model不能直接赋值 https://github.com/vuejs/jsx/issues/49#issuecomment-472013664
+        // Mô hình không thể gán một giá trị trực tiếp https://github.com/vuejs/jsx/issues/49#issuecomment-472013664
         props={{ model: this[formConfCopy.formModel] }}
         rules={this[formConfCopy.formRules]}
       >
@@ -72,8 +72,8 @@ function renderFrom(h) {
 function formBtns(h) {
   return <el-col>
     <el-form-item size="large">
-      <el-button type="primary" onClick={this.submitForm}>提交</el-button>
-      <el-button onClick={this.resetForm}>重置</el-button>
+      <el-button type="primary" onClick={this.submitForm}>Gửi đi</el-button>
+      <el-button onClick={this.resetForm}>Cài lại</el-button>
     </el-form-item>
   </el-col>
 }
@@ -86,7 +86,7 @@ function renderFormItem(h, elementList) {
     if (layout) {
       return layout.call(this, h, scheme)
     }
-    throw new Error(`没有与${config.layout}匹配的layout`)
+    throw new Error(`Không cùng${config.layout}Bố trí phù hợp`)
   })
 }
 
@@ -152,9 +152,9 @@ export default {
             const required = { required: config.required, message: cur.placeholder }
             if (Array.isArray(config.defaultValue)) {
               required.type = 'array'
-              required.message = `请至少选择一个${config.label}`
+              required.message = `Vui lòng chọn ít nhất một${config.label}`
             }
-            required.message === undefined && (required.message = `${config.label}不能为空`)
+            required.message === undefined && (required.message = `${config.label}Không thể trống`)
             config.regList.push(required)
           }
           rules[cur.__vModel__] = config.regList.map(item => {
@@ -173,7 +173,7 @@ export default {
     submitForm() {
       this.$refs[this.formConf.formRef].validate(valid => {
         if (!valid) return false
-        // 触发sumit事件
+        // Sự kiện kích thích kích hoạt.
         this.$emit('submit', this[this.formConf.formModel])
         return true
       })

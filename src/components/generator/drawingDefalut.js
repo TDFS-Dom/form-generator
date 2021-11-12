@@ -1,7 +1,7 @@
 export default [
   {
     __config__: {
-      label: '单行文本',
+      label: 'Một dòng văn bản',
       labelWidth: null,
       showLabel: true,
       changeTag: true,
@@ -24,7 +24,7 @@ export default [
       append: ''
     },
     __vModel__: 'mobile',
-    placeholder: '请输入手机号',
+    placeholder: 'Vui lòng nhập số điện thoại',
     style: { width: '100%' },
     clearable: true,
     'prefix-icon': 'el-icon-mobile',

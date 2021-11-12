@@ -40,19 +40,19 @@
             <div class="action-bar" :style="{'text-align': 'left'}">
               <span class="bar-btn" @click="runCode">
                 <i class="el-icon-refresh" />
-                刷新
+                Làm mới
               </span>
               <span class="bar-btn" @click="exportFile">
                 <i class="el-icon-download" />
-                导出vue文件
+                Xuất Tệp Vue
               </span>
               <span ref="copyBtn" class="bar-btn copy-btn">
                 <i class="el-icon-document-copy" />
-                复制代码
+                Sao chép mã.
               </span>
               <span class="bar-btn delete-btn" @click="$emit('update:visible', false)">
                 <i class="el-icon-circle-close" />
-                关闭
+                Khép kín
               </span>
             </div>
             <iframe
@@ -113,8 +113,8 @@ export default {
       cssCode: '',
       codeFrame: '',
       isIframeLoaded: false,
-      isInitcode: false, // 保证open后两个异步只执行一次runcode
-      isRefreshCode: false, // 每次打开都需要重新刷新代码
+      isInitcode: false, // Đảm bảo rằng hai không đồng bộ không đồng bộ không đồng bộ trong Open sẽ thực hiện Rundcode
+      isRefreshCode: false, // Làm mới mã cần được làm mới lại mỗi lần
       resourceVisible: false,
       scripts: [],
       links: [],
@@ -135,8 +135,8 @@ export default {
       text: trigger => {
         const codeStr = this.generateCode()
         this.$notify({
-          title: '成功',
-          message: '代码已复制到剪切板，可粘贴。',
+          title: 'sự thành công',
+          message: 'Mã đã được sao chép vào thớt và có thể được dán.',
           type: 'success'
         })
         return codeStr
@@ -200,7 +200,7 @@ export default {
           automaticLayout: true
         })
       }
-      // ctrl + s 刷新
+      // ctrl + s Làm mới
       editorObj[type].onKeyDown(e => {
         if (e.keyCode === 49 && (e.metaKey || e.ctrlKey)) {
           this.runCode()
@@ -214,8 +214,8 @@ export default {
         const astBody = ast.program.body
         if (astBody.length > 1) {
           this.$confirm(
-            'js格式不能识别，仅支持修改export default的对象内容',
-            '提示',
+            'Định dạng JS không nhận dạng, chỉ hỗ trợ sửa đổi nội dung đối tượng mặc định',
+            'gợi ý',
             {
               type: 'warning'
             }
@@ -240,10 +240,10 @@ export default {
             location.origin
           )
         } else {
-          this.$message.error('请使用export default')
+          this.$message.error('Vui lòng sử dụng xuất default')
         }
       } catch (err) {
-        this.$message.error(`js错误：${err}`)
+        this.$message.error(`Lỗi JS:${err}`)
         console.error(err)
       }
     },
@@ -254,10 +254,10 @@ export default {
       return beautifier.html(html + script + css, beautifierConf.html)
     },
     exportFile() {
-      this.$prompt('文件名:', '导出文件', {
+      this.$prompt('tên tập tin.:', 'Xuất tệp', {
         inputValue: `${+new Date()}.vue`,
         closeOnClickModal: false,
-        inputPlaceholder: '请输入文件名'
+        inputPlaceholder: 'Vui lòng nhập tên tệp'
       }).then(({ value }) => {
         if (!value) value = `${+new Date()}.vue`
         const codeStr = this.generateCode()

@@ -6,12 +6,12 @@ const components = {
   itemBtns(h, currentItem, index, list) {
     const { copyItem, deleteItem } = this.$listeners
     return [
-      <span class="drawing-item-copy" title="复制" onClick={event => {
+      <span class="drawing-item-copy" title="Sao chép" onClick={event => {
         copyItem(currentItem, list); event.stopPropagation()
       }}>
         <i class="el-icon-copy-document" />
       </span>,
-      <span class="drawing-item-delete" title="删除" onClick={event => {
+      <span class="drawing-item-delete" title="xóa bỏ" onClick={event => {
         deleteItem(index, list); event.stopPropagation()
       }}>
         <i class="el-icon-delete" />
@@ -93,7 +93,7 @@ function renderChildren(h, currentItem, index, list) {
 }
 
 function layoutIsNotFound() {
-  throw new Error(`没有与${this.currentItem.__config__.layout}匹配的layout`)
+  throw new Error(`Không cùng${this.currentItem.__config__.layout}Bố trí phù hợp`)
 }
 
 export default {

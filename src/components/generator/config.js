@@ -12,12 +12,12 @@ export const formConf = {
   formBtns: true
 }
 
-// 输入型组件 【左面板】
+// Thành phần đầu vào [Bảng bên trái]
 export const inputComponents = [
   {
     // 组件的自定义配置
     __config__: {
-      label: '单行文本',
+      label: 'Một dòng văn bản',
       labelWidth: null,
       showLabel: true,
       changeTag: true,
@@ -28,16 +28,16 @@ export const inputComponents = [
       layout: 'colFormItem',
       span: 24,
       document: 'https://element.eleme.cn/#/zh-CN/component/input',
-      // 正则校验规则
+      // Quy tắc xác minh thường xuyên
       regList: []
     },
-    // 组件的插槽属性
+    // Thuộc tính khe của thành phần
     __slot__: {
       prepend: '',
       append: ''
     },
-    // 其余的为可直接写在组件标签上的属性
-    placeholder: '请输入',
+    // Phần còn lại là các thuộc tính có thể được ghi trực tiếp trên nhãn thành phần
+    placeholder: 'Vui lòng nhập',
     style: { width: '100%' },
     clearable: true,
     'prefix-icon': '',
@@ -49,7 +49,7 @@ export const inputComponents = [
   },
   {
     __config__: {
-      label: '多行文本',
+      label: 'Văn bản nhiều dòng',
       labelWidth: null,
       showLabel: true,
       tag: 'el-input',
@@ -63,7 +63,7 @@ export const inputComponents = [
       document: 'https://element.eleme.cn/#/zh-CN/component/input'
     },
     type: 'textarea',
-    placeholder: '请输入',
+    placeholder: 'Vui lòng nhập',
     autosize: {
       minRows: 4,
       maxRows: 4
@@ -76,7 +76,7 @@ export const inputComponents = [
   },
   {
     __config__: {
-      label: '密码',
+      label: 'mật khẩu mở khóa',
       showLabel: true,
       labelWidth: null,
       changeTag: true,
@@ -93,7 +93,7 @@ export const inputComponents = [
       prepend: '',
       append: ''
     },
-    placeholder: '请输入',
+    placeholder: 'Vui lòng nhập',
     'show-password': true,
     style: { width: '100%' },
     clearable: true,
@@ -106,7 +106,7 @@ export const inputComponents = [
   },
   {
     __config__: {
-      label: '计数器',
+      label: 'quầy tính tiền',
       showLabel: true,
       changeTag: true,
       labelWidth: null,
@@ -130,7 +130,7 @@ export const inputComponents = [
   },
   {
     __config__: {
-      label: '编辑器',
+      label: 'Biên tập viên',
       showLabel: true,
       changeTag: true,
       labelWidth: null,
@@ -143,17 +143,17 @@ export const inputComponents = [
       regList: [],
       document: 'http://tinymce.ax-z.cn'
     },
-    placeholder: '请输入',
-    height: 300, // 编辑器高度
-    branding: false // 隐藏右下角品牌烙印
+    placeholder: 'Vui lòng nhập',
+    height: 300, // Chiều cao biên tập viên
+    branding: false // Ẩn thương hiệu thương hiệu ở góc dưới bên phải
   }
 ]
 
-// 选择型组件 【左面板】
+// Chọn thành phần [bảng bên trái]
 export const selectComponents = [
   {
     __config__: {
-      label: '下拉选择',
+      label: 'Thả xuống',
       showLabel: true,
       labelWidth: null,
       tag: 'el-select',
@@ -167,14 +167,14 @@ export const selectComponents = [
     },
     __slot__: {
       options: [{
-        label: '选项一',
+        label: 'Tùy chọn một.',
         value: 1
       }, {
-        label: '选项二',
+        label: 'Lựa chọn 2',
         value: 2
       }]
     },
-    placeholder: '请选择',
+    placeholder: 'xin vui lòng chọn',
     style: { width: '100%' },
     clearable: true,
     disabled: false,
@@ -183,7 +183,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '级联选择',
+      label: 'Lựa chọn Cascade',
       url: 'https://www.fastmock.site/mock/f8d7a54fb1e60561e2f720d5a810009d/fg/cascaderList',
       method: 'get',
       dataPath: 'list',
@@ -204,14 +204,14 @@ export const selectComponents = [
     options: [{
       id: 1,
       value: 1,
-      label: '选项1',
+      label: 'lựa chọn 1',
       children: [{
         id: 2,
         value: 2,
-        label: '选项1-1'
+        label: 'lựa chọn 1-1'
       }]
     }],
-    placeholder: '请选择',
+    placeholder: 'xin vui lòng chọn',
     style: { width: '100%' },
     props: {
       props: {
@@ -229,7 +229,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '单选框组',
+      label: 'Đài phát thanh nhóm',
       labelWidth: null,
       showLabel: true,
       tag: 'el-radio-group',
@@ -246,10 +246,10 @@ export const selectComponents = [
     },
     __slot__: {
       options: [{
-        label: '选项一',
+        label: 'Tùy chọn một.',
         value: 1
       }, {
-        label: '选项二',
+        label: 'Lựa chọn 2',
         value: 2
       }]
     },
@@ -259,7 +259,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '多选框组',
+      label: 'Nhóm hộp nhiều lựa chọn',
       tag: 'el-checkbox-group',
       tagIcon: 'checkbox',
       defaultValue: [],
@@ -276,10 +276,10 @@ export const selectComponents = [
     },
     __slot__: {
       options: [{
-        label: '选项一',
+        label: 'Tùy chọn một.',
         value: 1
       }, {
-        label: '选项二',
+        label: 'Lựa chọn 2',
         value: 2
       }]
     },
@@ -291,7 +291,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '开关',
+      label: 'chuyển',
       tag: 'el-switch',
       tagIcon: 'switch',
       defaultValue: false,
@@ -315,7 +315,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '滑块',
+      label: 'Thanh trượt.',
       tag: 'el-slider',
       tagIcon: 'slider',
       defaultValue: null,
@@ -337,7 +337,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '时间选择',
+      label: 'Lựa chọn thời gian',
       tag: 'el-time-picker',
       tagIcon: 'time',
       defaultValue: null,
@@ -350,7 +350,7 @@ export const selectComponents = [
       changeTag: true,
       document: 'https://element.eleme.cn/#/zh-CN/component/time-picker'
     },
-    placeholder: '请选择',
+    placeholder: 'xin vui lòng chọn',
     style: { width: '100%' },
     disabled: false,
     clearable: true,
@@ -362,7 +362,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '时间范围',
+      label: 'thời gian giới hạn',
       tag: 'el-time-picker',
       tagIcon: 'time-range',
       span: 24,
@@ -379,15 +379,15 @@ export const selectComponents = [
     disabled: false,
     clearable: true,
     'is-range': true,
-    'range-separator': '至',
-    'start-placeholder': '开始时间',
-    'end-placeholder': '结束时间',
+    'range-separator': 'đến',
+    'start-placeholder': 'Thời gian bắt đầu',
+    'end-placeholder': 'Thời gian kết thúc',
     format: 'HH:mm:ss',
     'value-format': 'HH:mm:ss'
   },
   {
     __config__: {
-      label: '日期选择',
+      label: 'Lựa chọn ngày',
       tag: 'el-date-picker',
       tagIcon: 'date',
       defaultValue: null,
@@ -400,7 +400,7 @@ export const selectComponents = [
       changeTag: true,
       document: 'https://element.eleme.cn/#/zh-CN/component/date-picker'
     },
-    placeholder: '请选择',
+    placeholder: 'xin vui lòng chọn',
     type: 'date',
     style: { width: '100%' },
     disabled: false,
@@ -411,7 +411,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '日期范围',
+      label: 'NGÀY NGÀY',
       tag: 'el-date-picker',
       tagIcon: 'date-range',
       defaultValue: null,
@@ -426,9 +426,9 @@ export const selectComponents = [
     },
     style: { width: '100%' },
     type: 'daterange',
-    'range-separator': '至',
-    'start-placeholder': '开始日期',
-    'end-placeholder': '结束日期',
+    'range-separator': 'đến',
+    'start-placeholder': 'Ngày bắt đầu',
+    'end-placeholder': 'Ngày cuối',
     disabled: false,
     clearable: true,
     format: 'yyyy-MM-dd',
@@ -459,7 +459,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '颜色选择',
+      label: 'Lựa chọn màu sắc',
       tag: 'el-color-picker',
       tagIcon: 'color',
       span: 24,
@@ -479,7 +479,7 @@ export const selectComponents = [
   },
   {
     __config__: {
-      label: '上传',
+      label: 'Tải lên',
       tag: 'el-upload',
       tagIcon: 'upload',
       layout: 'colFormItem',
@@ -489,7 +489,7 @@ export const selectComponents = [
       required: true,
       span: 24,
       showTip: false,
-      buttonText: '点击上传',
+      buttonText: 'Nhấn vào đây để tải lên',
       regList: [],
       changeTag: true,
       fileSize: 2,
@@ -509,13 +509,13 @@ export const selectComponents = [
   }
 ]
 
-// 布局型组件 【左面板】
+// Thành phần bố trí [bảng bên trái]
 export const layoutComponents = [
   {
     __config__: {
       layout: 'rowFormItem',
       tagIcon: 'row',
-      label: '行容器',
+      label: 'Thùng đựng hàng',
       layoutTree: true,
       document: 'https://element.eleme.cn/#/zh-CN/component/layout#row-attributes'
     },
@@ -525,7 +525,7 @@ export const layoutComponents = [
   },
   {
     __config__: {
-      label: '按钮',
+      label: 'Cái nút',
       showLabel: true,
       changeTag: true,
       labelWidth: null,
@@ -536,7 +536,7 @@ export const layoutComponents = [
       document: 'https://element.eleme.cn/#/zh-CN/component/button'
     },
     __slot__: {
-      default: '主要按钮'
+      default: 'Nút chính'
     },
     type: 'primary',
     icon: 'el-icon-search',
@@ -559,7 +559,7 @@ export const layoutComponents = [
       showLabel: true,
       changeTag: true,
       labelWidth: null,
-      label: '表格[开发中]',
+      label: 'Bảng [Phát triển]',
       dataType: 'dynamic',
       method: 'get',
       dataPath: 'list',
@@ -572,7 +572,7 @@ export const layoutComponents = [
           renderKey: 15957617660153
         },
         prop: 'date',
-        label: '日期'
+        label: 'ngày'
       }, {
         __config__: {
           layout: 'raw',
@@ -580,7 +580,7 @@ export const layoutComponents = [
           renderKey: 15957617660152
         },
         prop: 'address',
-        label: '地址'
+        label: 'Địa chỉ'
       }, {
         __config__: {
           layout: 'raw',
@@ -588,7 +588,7 @@ export const layoutComponents = [
           renderKey: 15957617660151
         },
         prop: 'name',
-        label: '名称'
+        label: 'Tên'
       }, {
         __config__: {
           layout: 'raw',
@@ -597,14 +597,14 @@ export const layoutComponents = [
           children: [
             {
               __config__: {
-                label: '按钮',
+                label: 'Cái nút',
                 tag: 'el-button',
                 tagIcon: 'button',
                 layout: 'raw',
                 renderKey: 1595779809901
               },
               __slot__: {
-                default: '主要按钮'
+                default: 'Nút chính'
               },
               type: 'primary',
               icon: 'el-icon-search',
@@ -613,7 +613,7 @@ export const layoutComponents = [
             }
           ]
         },
-        label: '操作'
+        label: 'chạy'
       }]
     },
     data: [],

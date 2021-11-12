@@ -1,6 +1,6 @@
 /**
- * 用于生成表单校验，指定正则规则的触发方式。
- * 未在此处声明无触发方式的组件将不生成rule！！
+ * Được sử dụng để tạo một kiểm tra biểu mẫu, chỉ định phương thức kích hoạt của quy tắc thông thường.
+ * Các thành phần chưa được khai báo mà không kích hoạt sẽ không tạo ra quy tắc!Những
  */
 export default {
   'el-input': 'blur',

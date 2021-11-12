@@ -1,9 +1,9 @@
 const callbacks = {}
 
 /**
- * 加载一个远程脚本
- * @param {String} src 一个远程脚本
- * @param {Function} callback 回调
+ * Tải một kịch bản từ xa
+ * @param {String} src Một kịch bản từ xa
+ * @param {Function} callback Gọi lại
  */
 function loadScript(src, callback) {
   const existingScript = document.getElementById(src)
@@ -48,9 +48,9 @@ function loadScript(src, callback) {
 }
 
 /**
- * 顺序加载一组远程脚本
- * @param {Array} list 一组远程脚本
- * @param {Function} cb 回调
+ * Thêm một tập hợp các tập lệnh từ xa theo thứ tự
+ * @param {Array} list Một tập hợp các kịch bản từ xa
+ * @param {Function} cb Gọi lại
  */
 export function loadScriptQueue(list, cb) {
   const first = list.shift()

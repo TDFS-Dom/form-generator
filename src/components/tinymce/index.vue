@@ -30,10 +30,10 @@ export default {
   mounted() {
     loadTinymce(tinymce => {
       // eslint-disable-next-line global-require
-      require('./zh_CN')
+      require('./vi_VN')
       let conf = {
         selector: `#${this.tinymceId}`,
-        language: 'zh_CN',
+        language: 'vi_VN',
         menubar: 'file edit insert view format table',
         plugins,
         toolbar,
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     vModel(editor) {
-      // 控制连续写入时setContent的触发频率
+      // Kiểm soát thời gian viết liên tục SetContent Kích hoạt tần số
       const debounceSetContent = debounce(250, editor.setContent)
       this.$watch('value', (val, prevVal) => {
         if (editor && val !== prevVal && val !== editor.getContent()) {

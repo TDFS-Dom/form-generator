@@ -3,7 +3,7 @@
     <div class="left-board">
       <div class="logo-wrapper">
         <div class="logo">
-          <img :src="logo" alt="logo"> Form Generator
+          <img :src="logo" alt="logo"> Tạo mẫu
           <a class="github" href="https://github.com/JakHuang/form-generator" target="_blank">
             <img src="https://github.githubassets.com/pinned-octocat.svg" alt>
           </a>
@@ -45,19 +45,19 @@
     <div class="center-board">
       <div class="action-bar">
         <el-button icon="el-icon-video-play" type="text" @click="run">
-          运行
+          chạy
         </el-button>
         <el-button icon="el-icon-view" type="text" @click="showJson">
-          查看json
+          Xem JSON.
         </el-button>
         <el-button icon="el-icon-download" type="text" @click="download">
-          导出vue文件
+          Xuất Tệp Vue
         </el-button>
         <el-button class="copy-btn-main" icon="el-icon-document-copy" type="text" @click="copy">
-          复制代码
+          Sao chép mã.
         </el-button>
         <el-button class="delete-btn" icon="el-icon-delete" type="text" @click="empty">
-          清空
+          Trống
         </el-button>
       </div>
       <el-scrollbar class="center-scrollbar">
@@ -83,7 +83,7 @@
               />
             </draggable>
             <div v-show="!drawingList.length" class="empty-info">
-              从左侧拖入或点选组件进行表单设计
+              Vẽ hoặc điểm Lựa chọn các thành phần từ bên trái
             </div>
           </el-form>
         </el-row>
@@ -112,7 +112,7 @@
     />
     <code-type-dialog
       :visible.sync="dialogVisible"
-      title="选择生成类型"
+      title="Chọn loại được tạo"
       :show-file-name="showFileName"
       @confirm="generate"
     />
@@ -190,15 +190,15 @@ export default {
       saveIdGlobalDebounce: debounce(340, saveIdGlobal),
       leftComponents: [
         {
-          title: '输入型组件',
+          title: 'Thành phần đầu vào',
           list: inputComponents
         },
         {
-          title: '选择型组件',
+          title: 'Chọn Loại thành phần.',
           list: selectComponents
         },
         {
-          title: '布局型组件',
+          title: 'Bố cục thành phần.',
           list: layoutComponents
         }
       ]
@@ -255,15 +255,15 @@ export default {
       text: trigger => {
         const codeStr = this.generateCode()
         this.$notify({
-          title: '成功',
-          message: '代码已复制到剪切板，可粘贴。',
+          title: 'sự thành công',
+          message: 'Mã đã được sao chép vào thớt và có thể được dán.',
           type: 'success'
         })
         return codeStr
       }
     })
     clipboard.on('error', e => {
-      this.$message.error('代码复制失败')
+      this.$message.error('Sao chép mã thất bại')
     })
   },
   methods: {
@@ -283,10 +283,10 @@ export default {
       if (!dataPath || !dataConsumer) return
       const respData = dataPath.split('.').reduce((pre, item) => pre[item], resp)
 
-      // 将请求回来的数据，赋值到指定属性。
-      // 以el-tabel为例，根据Element文档，应该将数据赋值给el-tabel的data属性，所以dataConsumer的值应为'data';
-      // 此时赋值代码可写成 component[dataConsumer] = respData；
-      // 但为支持更深层级的赋值（如：dataConsumer的值为'options.data'）,使用setObjectValueReduce
+      // Dữ liệu được yêu cầu trở lại để gán giá trị cho thuộc tính được chỉ định.
+      // Lấy el-tabel làm ví dụ. Theo tài liệu phần tử, dữ liệu phải được gán cho thuộc tính Dữ liệu của el-tabel, do đó giá trị của DataConsumer nên là 'Dữ liệu';
+      // Tại thời điểm này, mã gán có thể được ghi vào thành phần [dataconsumer] = respdata;
+      // Nhưng để hỗ trợ các cấp độ sâu hơn (như: giá trị của DataConsumer của 'Tùy chọn.data'), hãy sử dụng SetObjectValUereduce
       this.setObjectValueReduce(component, dataConsumer, respData)
       const i = this.drawingList.findIndex(item => item.__config__.renderKey === renderKey)
       if (i > -1) this.$set(this.drawingList, i, component)
@@ -331,7 +331,7 @@ export default {
     cloneComponent(origin) {
       const clone = deepClone(origin)
       const config = clone.__config__
-      config.span = this.formConf.span // 生成代码时，会根据span做精简判断
+      config.span = this.formConf.span // Khi tạo mã, nó sẽ dựa trên SPAN.
       this.createIdAndKey(clone)
       clone.placeholder !== undefined && (clone.placeholder += config.label)
       tempActiveData = clone
@@ -340,13 +340,13 @@ export default {
     createIdAndKey(item) {
       const config = item.__config__
       config.formId = ++this.idGlobal
-      config.renderKey = `${config.formId}${+new Date()}` // 改变renderKey后可以实现强制更新组件
+      config.renderKey = `${config.formId}${+new Date()}` // Các thành phần cập nhật bắt buộc có thể đạt được sau khi thay đổi kết xuất
       if (config.layout === 'colFormItem') {
         item.__vModel__ = `field${this.idGlobal}`
       } else if (config.layout === 'rowFormItem') {
         config.componentName = `row${this.idGlobal}`
         !Array.isArray(config.children) && (config.children = [])
-        delete config.label // rowFormItem无需配置label属性
+        delete config.label // Rowformitem không cần định cấu hình thuộc tính nhãn
       }
       if (Array.isArray(config.children)) {
         config.children = config.children.map(childItem => this.createIdAndKey(childItem))
@@ -377,7 +377,7 @@ export default {
       document.getElementById('copyNode').click()
     },
     empty() {
-      this.$confirm('确定要清空所有组件吗？', '提示', { type: 'warning' }).then(
+      this.$confirm('Bạn có phải xóa tất cả các thành phần?', 'gợi ý', { type: 'warning' }).then(
         () => {
           this.drawingList = []
           this.idGlobal = 100

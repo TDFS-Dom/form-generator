@@ -8,7 +8,7 @@ export function dialogWrapper(str) {
   return `<el-dialog v-bind="$attrs" v-on="$listeners" @open="onOpen" @close="onClose" title="Dialog Titile">
     ${str}
     <div slot="footer">
-      <el-button @click="close">取消</el-button>
+      <el-button @click="close">Hủy bỏ</el-button>
       <el-button type="primary" @click="handelConfirm">确定</el-button>
     </div>
   </el-dialog>`
@@ -57,7 +57,7 @@ function buildFromBtns(scheme, type) {
   if (scheme.formBtns && type === 'file') {
     str = `<el-form-item size="large">
           <el-button type="primary" @click="submitForm">提交</el-button>
-          <el-button @click="resetForm">重置</el-button>
+          <el-button @click="resetForm">Cài lại</el-button>
         </el-form-item>`
     if (someSpanIsNot24) {
       str = `<el-col :span="24">
@@ -145,7 +145,7 @@ const tags = {
       : ''
     let child = buildElInputChild(el)
 
-    if (child) child = `\n${child}\n` // 换行
+    if (child) child = `\n${child}\n` // Bọc
     return `<${tag} ${vModel} ${type} ${placeholder} ${maxlength} ${showWordLimit} ${readonly} ${disabled} ${clearable} ${prefixIcon} ${suffixIcon} ${showPassword} ${autosize} ${width}>${child}</${tag}>`
   },
   'el-input-number': el => {
@@ -169,7 +169,7 @@ const tags = {
     const multiple = el.multiple ? 'multiple' : ''
     let child = buildElSelectChild(el)
 
-    if (child) child = `\n${child}\n` // 换行
+    if (child) child = `\n${child}\n` // Bọc
     return `<${tag} ${vModel} ${placeholder} ${disabled} ${multiple} ${filterable} ${clearable} ${width}>${child}</${tag}>`
   },
   'el-radio-group': el => {
@@ -177,7 +177,7 @@ const tags = {
     const size = `size="${el.size}"`
     let child = buildElRadioGroupChild(el)
 
-    if (child) child = `\n${child}\n` // 换行
+    if (child) child = `\n${child}\n` // Bọc
     return `<${tag} ${vModel} ${size} ${disabled}>${child}</${tag}>`
   },
   'el-checkbox-group': el => {
@@ -187,7 +187,7 @@ const tags = {
     const max = el.max ? `:max="${el.max}"` : ''
     let child = buildElCheckboxGroupChild(el)
 
-    if (child) child = `\n${child}\n` // 换行
+    if (child) child = `\n${child}\n` // Bọc
     return `<${tag} ${vModel} ${min} ${max} ${size} ${disabled}>${child}</${tag}>`
   },
   'el-switch': el => {
@@ -314,7 +314,7 @@ function buildElButtonChild(scheme) {
   return children.join('\n')
 }
 
-// el-input 子级
+// el-input Đứa trẻ
 function buildElInputChild(scheme) {
   const children = []
   const slot = scheme.__slot__
@@ -327,7 +327,7 @@ function buildElInputChild(scheme) {
   return children.join('\n')
 }
 
-// el-select 子级
+// el-select Đứa trẻ
 function buildElSelectChild(scheme) {
   const children = []
   const slot = scheme.__slot__
@@ -337,7 +337,7 @@ function buildElSelectChild(scheme) {
   return children.join('\n')
 }
 
-// el-radio-group 子级
+// el-radio-group Đứa trẻ
 function buildElRadioGroupChild(scheme) {
   const children = []
   const slot = scheme.__slot__
@@ -363,34 +363,34 @@ function buildElCheckboxGroupChild(scheme) {
   return children.join('\n')
 }
 
-// el-upload 子级
+// el-upload Đứa trẻ
 function buildElUploadChild(scheme) {
   const list = []
   const config = scheme.__config__
   if (scheme['list-type'] === 'picture-card') list.push('<i class="el-icon-plus"></i>')
   else list.push(`<el-button size="small" type="primary" icon="el-icon-upload">${config.buttonText}</el-button>`)
-  if (config.showTip) list.push(`<div slot="tip" class="el-upload__tip">只能上传不超过 ${config.fileSize}${config.sizeUnit} 的${scheme.accept}文件</div>`)
+  if (config.showTip) list.push(`<div slot="tip" class="el-upload__tip">Chỉ có thể được tải lên không nhiều hơn ${config.fileSize}${config.sizeUnit} 的${scheme.accept}tài liệu</div>`)
   return list.join('\n')
 }
 
 /**
- * 组装html代码。【入口函数】
- * @param {Object} formConfig 整个表单配置
- * @param {String} type 生成类型，文件或弹窗等
+ * Lắp ráp mã HTML.[Chức năng lối vào]
+ * @param {Object} formConfig Cấu hình toàn bộ hình thức
+ * @param {String} type Tạo loại, tệp hoặc cửa sổ bật lên, v.v.
  */
 export function makeUpHtml(formConfig, type) {
   const htmlList = []
   confGlobal = formConfig
-  // 判断布局是否都沾满了24个栅格，以备后续简化代码结构
+  // Quyết định được bảo hiểm với 24 lưới cho các cấu trúc mã đơn giản hóa tiếp theo
   someSpanIsNot24 = formConfig.fields.some(item => item.__config__.span !== 24)
-  // 遍历渲染每个组件成html
+  // Traversal hiển thị từng thành phần vào HTML
   formConfig.fields.forEach(el => {
     htmlList.push(layouts[el.__config__.layout](el))
   })
   const htmlStr = htmlList.join('\n')
-  // 将组件代码放进form标签
+  // Đặt mã thành phần vào thẻ biểu mẫu
   let temp = buildFormTemplate(formConfig, htmlStr, type)
-  // dialog标签包裹代码
+  // Mã hộp thoại Mã gói
   if (type === 'dialog') {
     temp = dialogWrapper(temp)
   }

@@ -1,7 +1,7 @@
 {
   "name": "form-gen-tinymce",
   "version": "1.0.0",
-  "description": "富文本编辑器tinymce的一个vue版本封装。使用cdn动态脚本引入的方式加载。",
+  "description": "Một gói phiên bản VUE của trình soạn thảo văn bản phong phú TinyMCE.Được tải bằng cách sử dụng tập lệnh động CDN.",
   "main": "lib/form-gen-tinymce.umd.js",
   "directories": {
     "example": "example"

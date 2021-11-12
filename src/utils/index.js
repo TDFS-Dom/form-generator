@@ -2,10 +2,10 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 /**
- * num 小于0，左缩进num*2个空格； 大于0，右缩进num*2个空格。
- * @param {string} str 代码
- * @param {number} num 缩进次数
- * @param {number} len 【可选】缩进单位，空格数
+ * Num nhỏ hơn 0, và bên trái được thu hoạch trong không gian Num * 2; nhiều hơn 0, Num-2 thụt phải * 2 không gian.
+ * @param {string} str Mã số
+ * @param {number} num Số thụt lề
+ * @param {number} len [Tùy chọn] Đơn vị thụt lề, số lượng không gian
  */
 export function indent(str, num, len = 2) {
   if (num === 0) return str
@@ -25,12 +25,12 @@ export function indent(str, num, len = 2) {
   return result.join('\n')
 }
 
-// 首字母大小
+// Cỡ chữ cái đầu tiên
 export function titleCase(str) {
   return str.replace(/( |^)[a-z]/g, L => L.toUpperCase())
 }
 
-// 下划转驼峰
+// Dưới cái bướu
 export function camelCase(str) {
   return str.replace(/-[a-z]/g, str1 => str1.substr(-1).toUpperCase())
 }
